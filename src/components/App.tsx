@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 import { Header } from './header/Header';
-import { GoodsTree } from './goods-tree/Goods-tree';
+import { ProductTree } from './products-tree/Products-tree';
 
 export class App extends React.Component {
   constructor(props: any) {
@@ -15,7 +15,7 @@ export class App extends React.Component {
           <Header></Header>
           <div className="app-container">
             <div className="navigation-panel">
-              <GoodsTree></GoodsTree>
+              <ProductTree></ProductTree>
             </div>
           </div>
         </div>
