@@ -1,0 +1,22 @@
+.tree-branch-wrapper {
+  padding: 5px 10px;
+
+  .tree-branch-header {
+    display: flex;
+    align-items: center;
+
+    img {
+      height: 20px;
+      margin-right: 10px;
+    }
+
+    a {
+      color: #000;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+}
