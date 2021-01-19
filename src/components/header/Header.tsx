@@ -39,9 +39,9 @@ export class Header extends React.Component {
         </div>
         <div className="header-right-part">
           <div className="header-right-part-help-info">
-            <a href="#" className="header-right-part-help-info-item">Помощь</a>
-            <a href="#" className="header-right-part-help-info-item">Доставка</a>
-            <a href="#" className="header-right-part-help-info-item">Оплата</a>
+            <a href="/help" className="header-right-part-help-info-item">Помощь</a>
+            <a href="/delivery" className="header-right-part-help-info-item">Доставка</a>
+            <a href="/payment-info" className="header-right-part-help-info-item">Оплата</a>
           </div>
           <div className="header-right-part-help-account-info">
             <div className="header-right-part-help-account-user-info">
