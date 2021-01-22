@@ -11,14 +11,16 @@ export class Header extends React.Component {
   constructor(props: any) {
     super(props);
 
-    this.user = {name: 'User Name'};
+    this.user = { name: 'User Name' };
   }
 
   render() {
     return (
       <div className="header-wrapper">
         <div className="header-left-part">
-          <img className="header-left-part-logo-image" src={logoIcon}/>
+          <a  href="/">
+            <img className="header-left-part-logo-image" src={logoIcon}/>
+          </a>
           <div>
             <div className="header-left-part-info">
               <div className="header-left-part-info-phone-number-and-operators">

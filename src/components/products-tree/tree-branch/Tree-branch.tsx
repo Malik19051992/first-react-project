@@ -5,16 +5,15 @@ import './Tree-branch.scss';
 import plusIcon from '../../../assets/images/plus.svg';
 import minusIcon from '../../../assets/images/minus.svg';
 
-import { TreeBranch as ITreeBranch } from '../../../entries/Tree-branch';
+import {Category} from '../../../entries/Category';
 
 interface TreeBranchState {
   treeExpanded: boolean;
 }
 
-export class TreeBranch extends React.Component<{ data: ITreeBranch }, TreeBranchState> {
+export class TreeBranch extends React.Component<{ category: Category }, TreeBranchState> {
   constructor(props: any) {
     super(props);
-
     this.state = { treeExpanded: false };
   }
 
@@ -23,16 +22,16 @@ export class TreeBranch extends React.Component<{ data: ITreeBranch }, TreeBranc
   }
 
   render() {
-    if (this.props.data.children && this.props.data.children.length) {
+    if (this.props.category.subCategories && this.props.category.subCategories.length) {
       if (this.state.treeExpanded) {
         return (
           <div className="tree-branch-wrapper">
             <div className="tree-branch-header">
               <img src={minusIcon} onClick={this.onIconClick.bind(this)}/>
-              <a href="#">{this.props.data.title}</a>
+              <a href="#">{this.props.category.title}</a>
             </div>
-            {_.map(this.props.data.children, (treeBranch: ITreeBranch) => {
-              return (<TreeBranch key={treeBranch.title} data={treeBranch}></TreeBranch>);
+            {_.map(this.props.category.subCategories, (category: Category) => {
+              return (<TreeBranch key={category.id} category={category}></TreeBranch>);
             })}
           </div>
         );
@@ -41,7 +40,7 @@ export class TreeBranch extends React.Component<{ data: ITreeBranch }, TreeBranc
           <div className="tree-branch-wrapper">
             <div className="tree-branch-header">
               <img src={plusIcon} onClick={this.onIconClick.bind(this)}/>
-              <a href="#">{this.props.data.title}</a>
+              <a href="#">{this.props.category.title}</a>
             </div>
           </div>
         );
@@ -50,7 +49,7 @@ export class TreeBranch extends React.Component<{ data: ITreeBranch }, TreeBranc
       return (
         <div className="tree-branch-wrapper">
           <div className="tree-branch-header">
-            <a href="#">{this.props.data.title}</a>
+            <a href="#">{this.props.category.title}</a>
           </div>
         </div>
       );

@@ -1,0 +1,23 @@
+.product-grid-item-wrapper {
+  width: 265px;
+
+  .product-grid-item-src-wrapper {
+    .product-grid-item-src {
+      height: 200px;
+    }
+  }
+
+  .product-grid-item-product-data {
+    .product-grid-item-product-title {
+      color: #0077e8;
+    }
+    .product-grid-item-product-category {
+      color: #999;
+    }
+    .product-grid-item-product-rating {
+    }
+    .product-grid-item-product-price {
+      color: #0077e8;
+    }
+  }
+}

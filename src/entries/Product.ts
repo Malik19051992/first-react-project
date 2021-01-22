@@ -6,5 +6,6 @@ export interface Product {
   price: number;
   src: string;
   rating: number;
-  category: Category;
+  category?: Category;
+  categoryId?: number;
 }

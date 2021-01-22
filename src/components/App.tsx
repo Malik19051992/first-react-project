@@ -1,15 +1,24 @@
+import * as _ from 'lodash';
 import React from 'react';
 import './App.scss';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 
+import store from '../redux/store';
+import data from '../assets/data/categories.json';
 import { Header } from './header/Header';
 import { Help } from './help/Help';
 import { ProductTree } from './products-tree/Products-tree';
 import { ProductGridItem } from './product-grid-item/Product-grid-item';
+import { setCategories } from '../redux/actions/category-action';
+import { Category } from '../entries/Category';
 
 export class App extends React.Component {
   constructor(props: any) {
     super(props);
+  }
+
+  componentDidMount() {
+    store.dispatch(setCategories(this.groupCategoryData(data)));
   }
 
   render() {
@@ -33,5 +42,21 @@ export class App extends React.Component {
         </div>
       </div>
     );
+  }
+
+  private groupCategoryData(categories: Category[], parentId?: number): Category[] {
+    // const categor = _.find(categories, (category: Category) => category.id === parentId);
+
+    const groupedCategories: Category[] = _.map(categories, (category: Category) => {
+      category.subCategories = _.filter(categories, { parentCategoryId: category.id });
+
+      if (category.parentCategoryId) {
+        category.parentCategory = _.find(categories, { id: category.parentCategoryId })
+      }
+
+      return category;
+    });
+
+    return _.filter(groupedCategories, (category) => !category.parentCategoryId);
   }
 }
