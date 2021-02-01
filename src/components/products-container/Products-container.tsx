@@ -1,6 +1,7 @@
 import * as _ from 'lodash';
 import React from 'react';
 
+import store from '../../redux/store';
 import './Products-container.scss';
 import { Product } from '../../entries/Product';
 import { Category } from '../../entries/Category';
@@ -14,6 +15,10 @@ export class ProductsContainer extends React.Component<{ match: any }, { product
 
   componentDidMount() {
     this.setCategoryProducts();
+
+    store.subscribe(() => {
+      this.setCategoryProducts();
+    });
   }
 
   componentWillReceiveProps(newProps) {
