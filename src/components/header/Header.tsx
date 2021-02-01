@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import logoIcon from '../../assets/images/logo.png';
 import searchIcon from '../../assets/images/search.svg';
@@ -18,9 +19,9 @@ export class Header extends React.Component {
     return (
       <div className="header-wrapper">
         <div className="header-left-part">
-          <a  href="/">
+          <Link  to="/">
             <img className="header-left-part-logo-image" src={logoIcon}/>
-          </a>
+          </Link>
           <div>
             <div className="header-left-part-info">
               <div className="header-left-part-info-phone-number-and-operators">
@@ -41,9 +42,9 @@ export class Header extends React.Component {
         </div>
         <div className="header-right-part">
           <div className="header-right-part-help-info">
-            <a href="/help" className="header-right-part-help-info-item">Помощь</a>
-            <a href="/delivery" className="header-right-part-help-info-item">Доставка</a>
-            <a href="/payment-info" className="header-right-part-help-info-item">Оплата</a>
+            <Link to="/help" className="header-right-part-help-info-item">Помощь</Link>
+            <Link to="/delivery" className="header-right-part-help-info-item">Доставка</Link>
+            <Link to="/payment-info" className="header-right-part-help-info-item">Оплата</Link>
           </div>
           <div className="header-right-part-help-account-info">
             <div className="header-right-part-help-account-user-info">

@@ -1,11 +1,11 @@
 import * as _ from 'lodash';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './Tree-branch.scss';
 import plusIcon from '../../../assets/images/plus.svg';
 import minusIcon from '../../../assets/images/minus.svg';
-
-import {Category} from '../../../entries/Category';
+import { Category } from '../../../entries/Category';
 
 interface TreeBranchState {
   treeExpanded: boolean;
@@ -28,7 +28,7 @@ export class TreeBranch extends React.Component<{ category: Category }, TreeBran
           <div className="tree-branch-wrapper">
             <div className="tree-branch-header">
               <img src={minusIcon} onClick={this.onIconClick.bind(this)}/>
-              <a href="#">{this.props.category.title}</a>
+              <Link to={"/categories/" + this.props.category.id}>{this.props.category.title}</Link>
             </div>
             {_.map(this.props.category.subCategories, (category: Category) => {
               return (<TreeBranch key={category.id} category={category}></TreeBranch>);
@@ -40,7 +40,7 @@ export class TreeBranch extends React.Component<{ category: Category }, TreeBran
           <div className="tree-branch-wrapper">
             <div className="tree-branch-header">
               <img src={plusIcon} onClick={this.onIconClick.bind(this)}/>
-              <a href="#">{this.props.category.title}</a>
+              <Link to={"/categories/" + this.props.category.id}>{this.props.category.title}</Link>
             </div>
           </div>
         );
@@ -49,7 +49,7 @@ export class TreeBranch extends React.Component<{ category: Category }, TreeBran
       return (
         <div className="tree-branch-wrapper">
           <div className="tree-branch-header">
-            <a href="#">{this.props.category.title}</a>
+            <Link to={"/categories/" + this.props.category.id}>{this.props.category.title}</Link>
           </div>
         </div>
       );

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import categoriesData from '../assets/data/categories.json';
 import productsData from '../assets/data/products.json';
@@ -9,7 +9,6 @@ import { Help } from './help/Help';
 import { ProductTree } from './products-tree/Products-tree';
 import { ProductsContainer } from './products-container/Products-container';
 import { setCategories, setProducts } from '../redux/actions';
-import { CategoryUtils } from '../utils/category.utils';
 
 export class App extends React.Component {
   constructor(props: any) {
@@ -17,7 +16,7 @@ export class App extends React.Component {
   }
 
   componentDidMount() {
-    setCategories(CategoryUtils.groupCategoryData(categoriesData));
+    setCategories(categoriesData);
     setProducts(productsData);
   }
 
@@ -25,20 +24,21 @@ export class App extends React.Component {
     return (
       <div className="app-wrapper">
         <div className="app">
-          <Header></Header>
-          <div className="app-container">
-            <div className="navigation-panel">
-              <ProductTree></ProductTree>
-            </div>
-            <div className="page-content">
-              <BrowserRouter>
+          <BrowserRouter>
+            <Header></Header>
+            <div className="app-container">
+              <div className="navigation-panel">
+                <ProductTree></ProductTree>
+              </div>
+              <div className="page-content">
                 <Switch>
                   <Route exact path="/" component={ProductsContainer}></Route>
+                  <Route path="/categories/:categoryId" component={ProductsContainer}></Route>
                   <Route path="/help" component={Help}></Route>
                 </Switch>
-              </BrowserRouter>
+              </div>
             </div>
-          </div>
+          </BrowserRouter>
         </div>
       </div>
     );
