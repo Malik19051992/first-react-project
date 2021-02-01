@@ -15,11 +15,13 @@
 
       .navigation-panel {
         width: 300px;
+        min-width: 300px;
         box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
       }
 
       .page-content {
         padding: 20px;
+        width: 100%;
       }
     }
   }

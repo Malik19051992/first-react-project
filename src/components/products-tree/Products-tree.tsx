@@ -5,6 +5,7 @@ import './Products-tree.scss';
 import { TreeBranch } from './tree-branch/Tree-branch';
 import { Category } from '../../entries/Category';
 import store from '../../redux/store';
+import {getCategories} from '../../redux/actions/category-actions';
 
 
 export class ProductTree extends React.Component<any, { categories: Category[] }> {
@@ -14,7 +15,7 @@ export class ProductTree extends React.Component<any, { categories: Category[] }
 
   componentDidMount() {
     store.subscribe(() => {
-      this.setState({ categories: store.getState().categories });
+      this.setState({ categories: getCategories() });
     });
   }
 

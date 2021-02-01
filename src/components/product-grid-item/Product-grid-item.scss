@@ -1,9 +1,12 @@
 .product-grid-item-wrapper {
-  width: 265px;
+  width: 160px;
 
   .product-grid-item-src-wrapper {
+    height: 200px;
+    overflow: hidden;
+
     .product-grid-item-src {
-      height: 200px;
+      width: 100%;
     }
   }
 
