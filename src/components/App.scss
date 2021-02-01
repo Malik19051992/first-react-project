@@ -9,6 +9,7 @@
     width: 1400px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    min-height: 100vh;
 
     .app-container {
       display: flex;
@@ -17,6 +18,7 @@
         width: 300px;
         min-width: 300px;
         box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+        min-height: calc(100vh - 110px);
       }
 
       .page-content {

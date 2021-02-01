@@ -52,7 +52,7 @@
     "title": "Book7",
     "price": 1100,
     "src": "https://picsum.photos/240/325?random=7",
-    "rating": 5.5,
+    "rating": 4.5,
     "categoryId": 4
   },
   {
@@ -62,5 +62,166 @@
     "src": "https://picsum.photos/240/325?random=8",
     "rating": 5,
     "categoryId": 4
+  },
+  {
+    "id": 9,
+    "title": "Book9",
+    "price": 1100,
+    "src": "https://picsum.photos/240/325?random=9",
+    "rating": 4.5,
+    "categoryId": 2
+  },
+  {
+    "id": 10,
+    "title": "Book10",
+    "price": 1200,
+    "src": "https://picsum.photos/240/325?random=10",
+    "rating": 5,
+    "categoryId": 2
+  },
+  {
+    "id": 11,
+    "title": "Book11",
+    "price": 100,
+    "src": "https://picsum.photos/240/325?random=11",
+    "rating": 3.5,
+    "categoryId": 5
+  },
+  {
+    "id": 12,
+    "title": "Book12",
+    "price": 100,
+    "src": "https://picsum.photos/240/325?random=12",
+    "rating": 4.5,
+    "categoryId": 5
+  },
+  {
+    "id": 13,
+    "title": "Book13",
+    "price": 100,
+    "src": "https://picsum.photos/240/325?random=13",
+    "rating": 4.5,
+    "categoryId": 6
+  },
+  {
+    "id": 14,
+    "title": "Book14",
+    "price": 100,
+    "src": "https://picsum.photos/240/325?random=14",
+    "rating": 5,
+    "categoryId": 6
+  },
+  {
+    "id": 15,
+    "title": "Book15",
+    "price": 700,
+    "src": "https://picsum.photos/240/325?random=15",
+    "rating": 4,
+    "categoryId": 6
+  },
+  {
+    "id": 16,
+    "title": "Book16",
+    "price": 600,
+    "src": "https://picsum.photos/240/325?random=16",
+    "rating": 3,
+    "categoryId": 6
+  },
+  {
+    "id": 17,
+    "title": "Book17",
+    "price": 1100,
+    "src": "https://picsum.photos/240/325?random=17",
+    "rating": 4.5,
+    "categoryId": 7
+  },
+  {
+    "id": 18,
+    "title": "Book18",
+    "price": 1200,
+    "src": "https://picsum.photos/240/325?random=18",
+    "rating": 5,
+    "categoryId": 7
+  },
+  {
+    "id": 19,
+    "title": "Book19",
+    "price": 1100,
+    "src": "https://picsum.photos/240/325?random=19",
+    "rating": 4.5,
+    "categoryId": 7
+  },
+  {
+    "id": 20,
+    "title": "Book20",
+    "price": 1200,
+    "src": "https://picsum.photos/240/325?random=20",
+    "rating": 5,
+    "categoryId": 7
+  },
+  {
+    "id": 21,
+    "title": "Game21",
+    "price": 100,
+    "src": "https://picsum.photos/240/325?random=21",
+    "rating": 3.5,
+    "categoryId": 8
+  },
+  {
+    "id":22,
+    "title": "Game22",
+    "price": 100,
+    "src": "https://picsum.photos/240/325?random=22",
+    "rating": 4.5,
+    "categoryId": 8
+  },
+  {
+    "id": 23,
+    "title": "Game23",
+    "price": 100,
+    "src": "https://picsum.photos/240/325?random=23",
+    "rating": 4.5,
+    "categoryId": 8
+  },
+  {
+    "id": 24,
+    "title": "Game24",
+    "price": 100,
+    "src": "https://picsum.photos/240/325?random=24",
+    "rating": 5,
+    "categoryId": 8
+  },
+  {
+    "id": 25,
+    "title": "Game25",
+    "price": 700,
+    "src": "https://picsum.photos/240/325?random=25",
+    "rating": 4,
+    "categoryId": 9
+  },
+  {
+    "id": 26,
+    "title": "Game26",
+    "price": 600,
+    "src": "https://picsum.photos/240/325?random=26",
+    "rating": 3,
+    "categoryId": 9
+  },
+  {
+    "id": 27,
+    "title": "Game27",
+    "price": 1100,
+    "src": "https://picsum.photos/240/325?random=27",
+    "rating": 4.5,
+    "categoryId": 9
+  },
+  {
+    "id": 28,
+    "title": "Game28",
+    "price": 1200,
+    "src": "https://picsum.photos/240/325?random=28",
+    "rating": 5,
+    "categoryId": 9
   }
+
 ]
