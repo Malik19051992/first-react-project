@@ -7,17 +7,20 @@ import { Product } from '../../entries/Product';
 import { Category } from '../../entries/Category';
 import { getProducts, getCategories } from '../../redux/actions';
 import { ProductGridItem } from '../product-grid-item/Product-grid-item';
+import { ProductOptions } from './product-options/Product-options';
+import { ViewMode, ViewModeUtils } from '../../utils/view-mode.utils';
 
-export class ProductsContainer extends React.Component<{ match: any }, { products: Product[] }> {
+export class ProductsContainer extends React.Component<{ match: any }, { products: Product[], viewMode: ViewMode }> {
   constructor(props: any) {
     super(props);
   }
 
   componentDidMount() {
-    this.setCategoryProducts();
+    this.setCategoryProducts(+this.props.match.params.categoryId);
+    this.setState({ viewMode: ViewModeUtils.getViewMode() })
 
     store.subscribe(() => {
-      this.setCategoryProducts();
+      this.setCategoryProducts(+this.props.match.params.categoryId);
     });
   }
 
@@ -26,16 +29,22 @@ export class ProductsContainer extends React.Component<{ match: any }, { product
   }
 
   render() {
-    return (<div className='product-container'>
-      {_.map(this.state ?.products, (product: Product) => {
-        return (<ProductGridItem product={product} key={product.id}></ProductGridItem>);
-      })}
-    </div>);
+    return (
+      <div className='product-container-wrapper'>
+        <ProductOptions viewModeChanged={this.viewModeChanged.bind(this)}></ProductOptions>
+        <div className={this.state ?.viewMode === ViewMode.GRID ? 'product-container-grid' : 'product-container-list'}>
+          {_.map(this.state ?.products, (product: Product) => {
+            if(this.state?.viewMode === ViewMode.GRID){
+            return (<ProductGridItem product={product} key={product.id}></ProductGridItem>);
+          } else {
+            return <div className="product-container-list">item</div>
+          }
+          })}
+        </div>
+      </div>);
   }
 
-  private setCategoryProducts(categoryId?: number) {
-    categoryId = categoryId || +this.props.match.params.categoryId;
-
+  private setCategoryProducts(categoryId: number) {
     if (!categoryId) {
       this.setState({ products: getProducts() });
 
@@ -57,5 +66,10 @@ export class ProductsContainer extends React.Component<{ match: any }, { product
     });
 
     return productResult;
+  }
+
+  private viewModeChanged(value: ViewMode) {
+    this.setState({ viewMode: value })
+
   }
 }

@@ -1,5 +1,10 @@
-.product-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 160px);
-  grid-gap: 20px;
+.product-container-wrapper {
+  .product-container-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 160px);
+    grid-gap: 20px;
+  }
+
+  .product-container-list {
+  }
 }

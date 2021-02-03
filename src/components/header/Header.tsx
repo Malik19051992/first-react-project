@@ -19,7 +19,7 @@ export class Header extends React.Component {
     return (
       <div className="header-wrapper">
         <div className="header-left-part">
-          <Link  to="/">
+          <Link to="/">
             <img className="header-left-part-logo-image" src={logoIcon}/>
           </Link>
           <div>

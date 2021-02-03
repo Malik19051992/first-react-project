@@ -23,7 +23,7 @@ export class ProductTree extends React.Component<any, { categories: Category[] }
   render() {
     return (
       <div className="product-tree-wrapper">
-        {_.map(this.state ?.categories, (category: Category) => {
+        {_.map(this.state?.categories, (category: Category) => {
           return (<TreeBranch key={category.id} category={category}></TreeBranch>);
         })}
       </div>
