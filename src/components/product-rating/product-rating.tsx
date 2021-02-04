@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import React from 'react';
 
-import './Product-rating.scss';
+import './product-rating.scss';
 import starempty from '../../assets/images/starempty.png';
 import starfull from '../../assets/images/starfull.png';
 import starhalffull from '../../assets/images/starhalffull.png';

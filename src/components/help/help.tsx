@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Help.scss';
+import './help.scss';
 
 export class Help extends React.Component {
   constructor(props: any) {

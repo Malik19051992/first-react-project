@@ -1,5 +1,5 @@
-import { Category } from '../entries/Category';
-import { Product } from '../entries/Product';
+import { Category } from '../entries/category';
+import { Product } from '../entries/product';
 
 interface InitialState {
   categories: Category[],

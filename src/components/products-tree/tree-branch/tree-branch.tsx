@@ -2,10 +2,10 @@ import * as _ from 'lodash';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './Tree-branch.scss';
+import './tree-branch.scss';
 import plusIcon from '../../../assets/images/plus.svg';
 import minusIcon from '../../../assets/images/minus.svg';
-import { Category } from '../../../entries/Category';
+import { Category } from '../../../entries/category';
 
 interface TreeBranchState {
   treeExpanded: boolean;

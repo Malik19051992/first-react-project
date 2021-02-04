@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import React from 'react';
 
-import './Product-options.scss';
+import './product-options.scss';
 import gridIcon from '../../../assets/images/grid.svg';
 import listIcon from '../../../assets/images/list.svg';
 import { ViewMode, ViewModeUtils } from '../../../utils/view-mode.utils';

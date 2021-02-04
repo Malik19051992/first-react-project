@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import logoIcon from '../../assets/images/logo.png';
 import searchIcon from '../../assets/images/search.svg';
 import userIcon from '../../assets/images/user.png';
-import './Header.scss';
+import './header.scss';
 
 export class Header extends React.Component {
   private user: any;

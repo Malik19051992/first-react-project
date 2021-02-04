@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 
-import { Category } from '../entries/Category';
+import { Category } from '../entries/category';
 
 export class CategoryUtils{
   static groupCategoryData(categories: Category[], parentId?: number): Category[] {

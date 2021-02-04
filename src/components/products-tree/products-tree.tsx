@@ -1,9 +1,9 @@
 import * as _ from 'lodash';
 import React from 'react';
 
-import './Products-tree.scss';
-import { TreeBranch } from './tree-branch/Tree-branch';
-import { Category } from '../../entries/Category';
+import './products-tree.scss';
+import { TreeBranch } from './tree-branch/tree-branch';
+import { Category } from '../../entries/category';
 import store from '../../redux/store';
 import { getCategories } from '../../redux/actions/category-actions';
 import { CategoryUtils } from '../../utils/category.utils';

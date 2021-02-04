@@ -2,12 +2,13 @@ import * as _ from 'lodash';
 import React from 'react';
 
 import store from '../../redux/store';
-import './Products-container.scss';
-import { Product } from '../../entries/Product';
-import { Category } from '../../entries/Category';
+import './products-container.scss';
+import { Product } from '../../entries/product';
+import { Category } from '../../entries/category';
 import { getProducts, getCategories } from '../../redux/actions';
-import { ProductGridItem } from '../product-grid-item/Product-grid-item';
-import { ProductOptions } from './product-options/Product-options';
+import { ProductGridItem } from '../product-grid-item/product-grid-item';
+import { ProductListItem } from '../product-list-item/product-list-item';
+import { ProductOptions } from './product-options/product-options';
 import { ViewMode, ViewModeUtils } from '../../utils/view-mode.utils';
 
 export class ProductsContainer extends React.Component<{ match: any }, { products: Product[], viewMode: ViewMode }> {
@@ -37,7 +38,7 @@ export class ProductsContainer extends React.Component<{ match: any }, { product
             if(this.state?.viewMode === ViewMode.GRID){
             return (<ProductGridItem product={product} key={product.id}></ProductGridItem>);
           } else {
-            return <div className="product-container-list">item</div>
+            return (<ProductListItem product={product} key={product.id}></ProductListItem>);
           }
           })}
         </div>
