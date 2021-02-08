@@ -1,18 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 import logoIcon from '../../assets/images/logo.png';
 import searchIcon from '../../assets/images/search.svg';
 import userIcon from '../../assets/images/user.png';
 import './header.scss';
 
-export class Header extends React.Component {
+class HeaderComponent extends React.Component<{ history: any }, { searchInputValue: string }> {
   private user: any;
 
   constructor(props: any) {
     super(props);
 
     this.user = { name: 'User Name' };
+  }
+
+  componentDidMount() {
+    this.setState({ searchInputValue: new URLSearchParams(this.props.history.location.search).get('filter') || '' });
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (!new URLSearchParams(newProps.location.search).get('filter')) {
+      this.setState({ searchInputValue: '' });
+    }
   }
 
   render() {
@@ -33,8 +44,10 @@ export class Header extends React.Component {
               </div>
             </div>
             <div className="header-left-part-search-input-wrapper">
-              <input/>
-              <button>
+              <input type="text" value={this.state ?.searchInputValue}
+                     onChange={this.handleSearchInputChange.bind(this)}
+                     onKeyUp={(event)=>{this.searchProducts(event)}}/>
+              <button onClick={this.searchProducts.bind(this)}>
                 <img src={searchIcon}/>
               </button>
             </div>
@@ -48,7 +61,7 @@ export class Header extends React.Component {
           </div>
           <div className="header-right-part-help-account-info">
             <div className="header-right-part-help-account-user-info">
-              <img src={userIcon}/> {this.user.name}
+              <img src={userIcon}/> {this.user ?.name}
             </div>
             <div className="header-right-part-help-account-basket">
               Корзина&#8194;
@@ -61,4 +74,21 @@ export class Header extends React.Component {
       </div>
     );
   }
+
+  public handleSearchInputChange(event) {
+    this.setState({ searchInputValue: event.target.value });
+  }
+
+  private searchProducts(event?: any) {
+    if(event && event.key !== 'Enter'){
+      return;
+    }
+
+    this.props.history.push({
+      pathname: this.props.history.pathname,
+      search: `?filter=${this.state.searchInputValue}`
+    });
+  }
 }
+
+export const Header = withRouter(HeaderComponent as any);

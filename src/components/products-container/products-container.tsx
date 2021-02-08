@@ -11,22 +11,25 @@ import { ProductListItem } from '../product-list-item/product-list-item';
 import { ProductOptions } from './product-options/product-options';
 import { ViewMode, ViewModeUtils } from '../../utils/view-mode.utils';
 
-export class ProductsContainer extends React.Component<{ match: any }, { products: Product[], viewMode: ViewMode }> {
+export class ProductsContainer extends React.Component<{ match: any, location: any }, { products: Product[], viewMode: ViewMode }> {
   constructor(props: any) {
     super(props);
   }
 
   componentDidMount() {
-    this.setCategoryProducts(+this.props.match.params.categoryId);
-    this.setState({ viewMode: ViewModeUtils.getViewMode() })
+    this.setCategoryProducts();
+    this.setState({ viewMode: ViewModeUtils.getViewMode() });
 
     store.subscribe(() => {
-      this.setCategoryProducts(+this.props.match.params.categoryId);
+      this.setCategoryProducts();
     });
   }
 
   componentWillReceiveProps(newProps) {
-    this.setCategoryProducts(+newProps.match.params.categoryId);
+    // need to update after url update. kostyl
+    setTimeout(()=>{
+      this.setCategoryProducts();
+    });
   }
 
   render() {
@@ -45,9 +48,11 @@ export class ProductsContainer extends React.Component<{ match: any }, { product
       </div>);
   }
 
-  private setCategoryProducts(categoryId: number) {
+  private setCategoryProducts() {
+    const categoryId: number = +this.props.match.params.categoryId;
+
     if (!categoryId) {
-      this.setState({ products: getProducts() });
+      this.setState({ products: this.filterProducts(getProducts()) });
 
       return;
     }
@@ -55,7 +60,7 @@ export class ProductsContainer extends React.Component<{ match: any }, { product
     const categories: Category[] = getCategories();
     const categoryProducts: Product[] = this.getCategoryProducts(categoryId, categories, getProducts());
 
-    this.setState({ products: categoryProducts });
+    this.setState({ products: this.filterProducts(categoryProducts) });
   }
 
   private getCategoryProducts(categoryId: number, categories: Category[], products: Product[]): Product[] {
@@ -72,5 +77,15 @@ export class ProductsContainer extends React.Component<{ match: any }, { product
   private viewModeChanged(value: ViewMode) {
     this.setState({ viewMode: value })
 
+  }
+
+  private filterProducts(products: Product[]) {
+    const filter: string = new URLSearchParams(this.props.location.search).get("filter");
+
+    if (!filter) {
+      return products;
+    }
+
+    return _.filter(products, (product: Product) => product.title.toLocaleLowerCase().includes(filter.toLocaleLowerCase()));
   }
 }

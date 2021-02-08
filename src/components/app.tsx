@@ -2,6 +2,7 @@ import * as _ from 'lodash';
 import React from 'react';
 import './app.scss';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
 import categoriesData from '../assets/data/categories.json';
 import productsData from '../assets/data/products.json';
@@ -13,9 +14,12 @@ import { ProductTree } from './products-tree/products-tree';
 import { ProductsContainer } from './products-container/products-container';
 import { setCategories, setProducts } from '../redux/actions';
 
-export class App extends React.Component {
+export class App extends React.Component<{ location?: any }, any> {
+  private customHistory;
+
   constructor(props: any) {
     super(props);
+    this.customHistory = createBrowserHistory();
   }
 
   componentDidMount() {

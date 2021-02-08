@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 import React from 'react';
+import { withRouter } from 'react-router';
 
 import './products-tree.scss';
 import { TreeBranch } from './tree-branch/tree-branch';
@@ -9,7 +10,7 @@ import { getCategories } from '../../redux/actions/category-actions';
 import { CategoryUtils } from '../../utils/category.utils';
 
 
-export class ProductTree extends React.Component<any, { categories: Category[] }> {
+class ProductTreeComponent extends React.Component<{location: any}, { categories: Category[] }> {
   constructor(props: any) {
     super(props);
   }
@@ -24,9 +25,11 @@ export class ProductTree extends React.Component<any, { categories: Category[] }
     return (
       <div className="product-tree-wrapper">
         {_.map(this.state?.categories, (category: Category) => {
-          return (<TreeBranch key={category.id} category={category}></TreeBranch>);
+          return (<TreeBranch key={category.id} category={category} location={this.props.location}></TreeBranch>);
         })}
       </div>
     )
   }
 }
+
+export const ProductTree = withRouter(ProductTreeComponent as any);

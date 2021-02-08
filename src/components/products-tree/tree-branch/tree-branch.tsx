@@ -7,11 +7,7 @@ import plusIcon from '../../../assets/images/plus.svg';
 import minusIcon from '../../../assets/images/minus.svg';
 import { Category } from '../../../entries/category';
 
-interface TreeBranchState {
-  treeExpanded: boolean;
-}
-
-export class TreeBranch extends React.Component<{ category: Category }, TreeBranchState> {
+export class TreeBranch extends React.Component<{ category: Category, location: any }, {treeExpanded: boolean}> {
   constructor(props: any) {
     super(props);
     this.state = { treeExpanded: false };
@@ -28,10 +24,11 @@ export class TreeBranch extends React.Component<{ category: Category }, TreeBran
           <div className="tree-branch-wrapper">
             <div className="tree-branch-header">
               <img src={minusIcon} onClick={this.onIconClick.bind(this)}/>
-              <Link to={"/categories/" + this.props.category.id}>{this.props.category.title}</Link>
+              <Link to={"/categories/" + this.props.category.id + this.props.location.search}>
+                {this.props.category.title}</Link>
             </div>
             {_.map(this.props.category.subCategories, (category: Category) => {
-              return (<TreeBranch key={category.id} category={category}></TreeBranch>);
+              return (<TreeBranch key={category.id} category={category} location={this.props.location}></TreeBranch>);
             })}
           </div>
         );
@@ -40,7 +37,8 @@ export class TreeBranch extends React.Component<{ category: Category }, TreeBran
           <div className="tree-branch-wrapper">
             <div className="tree-branch-header">
               <img src={plusIcon} onClick={this.onIconClick.bind(this)}/>
-              <Link to={"/categories/" + this.props.category.id}>{this.props.category.title}</Link>
+              <Link to={"/categories/" + this.props.category.id + this.props.location.search}>
+                {this.props.category.title}</Link>
             </div>
           </div>
         );
@@ -49,7 +47,8 @@ export class TreeBranch extends React.Component<{ category: Category }, TreeBran
       return (
         <div className="tree-branch-wrapper">
           <div className="tree-branch-header">
-            <Link to={"/categories/" + this.props.category.id}>{this.props.category.title}</Link>
+            <Link to={"/categories/" + this.props.category.id + this.props.location.search}>
+              {this.props.category.title}</Link>
           </div>
         </div>
       );
