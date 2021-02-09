@@ -4,6 +4,17 @@
   padding-bottom: 20px;
 
   .sorting-container {
+    select {
+      border: none;
+    }
+
+    select:focus {
+      outline: none;
+
+      option {
+        border: none;
+      }
+    }
 
   }
 
