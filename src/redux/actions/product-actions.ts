@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import store from '../store';
 
 export enum ProductActionType {
@@ -11,4 +12,6 @@ export const setProducts = (products) => (
   })
 );
 
-export const getProducts = ()=> store.getState().products;
+export const getProducts = () => store.getState().products;
+
+export const getProduct = (productId: number) => _.find(store.getState().products, { id: productId });

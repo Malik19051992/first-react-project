@@ -12,6 +12,7 @@ import { Product } from '../entries/product';
 import { Category } from '../entries/category';
 import { ProductTree } from './products-tree/products-tree';
 import { ProductsContainer } from './products-container/products-container';
+import { Product as ProductComponent } from './product/product';
 import { setCategories, setProducts } from '../redux/actions';
 
 export class App extends React.Component<{ location?: any }, any> {
@@ -23,14 +24,7 @@ export class App extends React.Component<{ location?: any }, any> {
   }
 
   componentDidMount() {
-    const categories: Category[] = _.cloneDeep(categoriesData);
-    setCategories(categories);
-    const products: Product[] = _.cloneDeep(productsData);
-    setProducts(_.map(products, (product: Product) => {
-      product.category = _.find(categories, { id: product.categoryId });
-
-      return product;
-    }));
+    this.setReduxState();
   }
 
   render() {
@@ -47,6 +41,7 @@ export class App extends React.Component<{ location?: any }, any> {
                 <Switch>
                   <Route exact path="/" component={ProductsContainer}></Route>
                   <Route path="/categories/:categoryId" component={ProductsContainer}></Route>
+                  <Route path="/products/:productId" component={ProductComponent}></Route>
                   <Route path="/help" component={Help}></Route>
                 </Switch>
               </div>
@@ -55,5 +50,16 @@ export class App extends React.Component<{ location?: any }, any> {
         </div>
       </div>
     );
+  }
+
+  private setReduxState() {
+    const categories: Category[] = _.cloneDeep(categoriesData);
+    setCategories(categories);
+    const products: Product[] = _.cloneDeep(productsData);
+    setProducts(_.map(products, (product: Product) => {
+      product.category = _.find(categories, { id: product.categoryId });
+
+      return product;
+    }));
   }
 }

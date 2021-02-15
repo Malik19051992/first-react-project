@@ -3,6 +3,7 @@
   height: 230px;
   display: flex;
   margin-bottom: 20px;
+  text-decoration: none;
 
   .product-list-item-src-wrapper {
     width: 230px;
@@ -24,20 +25,26 @@
 
     .product-list-item-product-data {
       width: 500px;
+      overflow: hidden;
 
       .product-list-item-product-title {
         font-size: 20px;
-        color: #0000ff;
+        color: #0077e8;;
         font-weight: bold;
         margin-bottom: 5px;
       }
 
-      .product-grid-item-product-category {
+      .product-list-item-product-category {
         color: #999;
       }
 
-      .product-grid-item-product-price {
+      .product-list-item-product-price {
         color: #0077e8;
+      }
+
+      .product-list-item-product-description {
+        color: black;
+        padding: 15px 0;
       }
     }
   }

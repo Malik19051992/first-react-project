@@ -1,0 +1,33 @@
+.product-wrapper {
+  display: flex;
+
+  .product-src {
+    width: 240px;
+    height: 325px;
+
+    img {
+      max-width: 240px;
+      max-height: 325px;
+    }
+  }
+
+  .product-data {
+    margin-left: 20px;
+
+    .product-data-title {
+      margin: 0;
+    }
+
+    .product-data-rating {
+      margin: 10px 0;
+    }
+
+    .product-data-price {
+      margin: 0;
+    }
+
+    .product-data-description{
+      margin-top: 10px;
+    }
+  }
+}
