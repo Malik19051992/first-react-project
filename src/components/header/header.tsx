@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
+import './header.scss';
+import store from '../../redux/store';
 import logoIcon from '../../assets/images/logo.png';
 import searchIcon from '../../assets/images/search.svg';
 import userIcon from '../../assets/images/user.png';
-import './header.scss';
+import { getCartItems } from '../../redux/actions';
 
-class HeaderComponent extends React.Component<{ history: any }, { searchInputValue: string }> {
+class HeaderComponent extends React.Component<{ history: any }, { searchInputValue: string, cartItemsCount: number }> {
   private user: any;
 
   constructor(props: any) {
@@ -17,7 +19,14 @@ class HeaderComponent extends React.Component<{ history: any }, { searchInputVal
   }
 
   componentDidMount() {
-    this.setState({ searchInputValue: new URLSearchParams(this.props.history.location.search).get('filter') || '' });
+    this.setState({
+      searchInputValue: new URLSearchParams(this.props.history.location.search).get('filter') || '',
+      cartItemsCount: (getCartItems() || []).length
+    });
+
+    store.subscribe(() => {
+      this.setState({ cartItemsCount: (getCartItems() || []).length });
+    })
   }
 
   componentWillReceiveProps(newProps) {
@@ -27,6 +36,10 @@ class HeaderComponent extends React.Component<{ history: any }, { searchInputVal
   }
 
   render() {
+    const cartItemsCountElement = this.state?.cartItemsCount ? (<div className="header-right-part-help-account-cart-count">
+      {this.state?.cartItemsCount}
+    </div>) : null;
+
     return (
       <div className="header-wrapper">
         <div className="header-left-part">
@@ -44,9 +57,9 @@ class HeaderComponent extends React.Component<{ history: any }, { searchInputVal
               </div>
             </div>
             <div className="header-left-part-search-input-wrapper">
-              <input type="text" value={this.state ?.searchInputValue}
+              <input type="text" value={this.state?.searchInputValue}
                      onChange={this.handleSearchInputChange.bind(this)}
-                     onKeyUp={(event)=>{this.searchProducts(event)}}/>
+                     onKeyUp={(event) => {this.searchProducts(event)}}/>
               <button onClick={this.searchProducts.bind(this)}>
                 <img src={searchIcon}/>
               </button>
@@ -61,14 +74,12 @@ class HeaderComponent extends React.Component<{ history: any }, { searchInputVal
           </div>
           <div className="header-right-part-help-account-info">
             <div className="header-right-part-help-account-user-info">
-              <img src={userIcon}/> {this.user ?.name}
+              <img src={userIcon}/> {this.user?.name}
             </div>
-            <div className="header-right-part-help-account-basket">
+            <Link to="/cart" className="header-right-part-help-account-basket">
               Корзина&#8194;
-              <div className="header-right-part-help-account-basket-count">
-                10
-              </div>
-            </div>
+              {cartItemsCountElement}
+            </Link>
           </div>
         </div>
       </div>
@@ -80,7 +91,7 @@ class HeaderComponent extends React.Component<{ history: any }, { searchInputVal
   }
 
   private searchProducts(event?: any) {
-    if(event && event.key !== 'Enter'){
+    if (event && event.key !== 'Enter') {
       return;
     }
 

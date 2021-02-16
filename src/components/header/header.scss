@@ -123,12 +123,16 @@
         font-weight: 600;
         display: flex;
         align-items: center;
+        text-decoration: none;
+        color: black;
 
-        .header-right-part-help-account-basket-count {
+        .header-right-part-help-account-cart-count {
           padding: 5px;
           border: solid 1px #999;
           border-radius: 5px;
           font-weight: normal;
+          min-width: 25px;
+          text-align: center;
         }
       }
     }

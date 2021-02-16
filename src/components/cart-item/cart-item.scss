@@ -1,0 +1,33 @@
+.cart-item-wrapper {
+  display: flex;
+  width: 100%;
+  border-bottom: solid 1px #999;
+
+  .cart-item-src {
+    height: 125px;
+    padding-top: 5px;
+
+    img {
+      max-height: 120px;
+    }
+  }
+
+  .cart-item-data, .cart-item-count, .cart-item-price {
+    margin: 10px 0;
+  }
+
+  .cart-item-data {
+    flex: 1;
+    padding-left: 20px;
+  }
+
+  .cart-item-count {
+    width: 100px;
+    text-align: center;
+  }
+
+  .cart-item-price {
+    width: 100px;
+    text-align: center;
+  }
+}

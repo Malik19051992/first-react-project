@@ -1,7 +1,8 @@
 import * as _ from 'lodash';
 
 export enum LocalStorageItem {
-  VIEW_MODE = 'view_mode'
+  VIEW_MODE = 'view_mode',
+  CART = 'CART'
 }
 
 export class LocalStorageUtils {

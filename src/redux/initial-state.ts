@@ -1,12 +1,15 @@
 import { Category } from '../entries/category';
 import { Product } from '../entries/product';
+import { CartItem } from '../entries/cart-item';
 
 interface InitialState {
   categories: Category[],
-  products: Product[]
+  products: Product[],
+  cartItems: CartItem[]
 }
 
 export const initialState: InitialState = {
   categories: [],
-  products: []
+  products: [],
+  cartItems: []
 };
