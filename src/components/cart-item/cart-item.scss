@@ -3,6 +3,13 @@
   width: 100%;
   border-bottom: solid 1px #999;
 
+  .cart-item-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    width: 40px;
+    justify-content: center;
+  }
+
   .cart-item-src {
     height: 125px;
     padding-top: 5px;
@@ -29,5 +36,11 @@
   .cart-item-price {
     width: 100px;
     text-align: center;
+  }
+
+  .cart-item-delete div {
+    transform: rotate(45deg);
+    font-size: 25px;
+    cursor: pointer;
   }
 }

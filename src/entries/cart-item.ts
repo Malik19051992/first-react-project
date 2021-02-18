@@ -5,4 +5,5 @@ export interface CartItem {
   productId: number;
   product: Product;
   count: number;
+  selected?:boolean;
 }
