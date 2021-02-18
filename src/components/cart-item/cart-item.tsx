@@ -1,11 +1,12 @@
+import * as _ from 'lodash';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './cart-item.scss';
 import { CartItem as CartItemEntry } from '../../entries/cart-item';
-import {deleteCartItem} from '../../redux/actions';
+import { deleteCartItem, updateCartItem } from '../../redux/actions';
 
-export class CartItem extends React.Component<{ cartItem: CartItemEntry, cartItemSelectedChangeHandler: (itemId: number, value: boolean) => void }, any> {
+export class CartItem extends React.Component<{ cartItem: CartItemEntry }, any> {
   constructor(props: any) {
     super(props);
   }
@@ -47,10 +48,12 @@ export class CartItem extends React.Component<{ cartItem: CartItemEntry, cartIte
   }
 
   private checkboxChangedHandler(event) {
-    this.props.cartItemSelectedChangeHandler(this.props.cartItem.id, event.target.checked)
+    this.props.cartItem.selected = event.target.checked;
+
+    updateCartItem(this.props.cartItem);
   }
 
-  private cartItemDeleteHandler(){
+  private cartItemDeleteHandler() {
     deleteCartItem(this.props.cartItem.id);
   }
 }
