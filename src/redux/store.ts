@@ -11,4 +11,8 @@ const store = createStore(combineReducers({
   cartItems: cartReducer
 }), initialState as any);
 
+export const getStoreSubscription = (callback) => {
+  return store.subscribe(callback);
+}
+
 export default store;
