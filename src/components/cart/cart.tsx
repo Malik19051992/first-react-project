@@ -1,14 +1,17 @@
 import * as _ from 'lodash';
 import React from 'react';
+import { Unsubscribe } from 'redux';
 import { Link } from 'react-router-dom';
 
 import './cart.scss';
-import store from '../../redux/store';
+import { getStoreSubscription } from '../../redux/store';
 import { CartItem as CartItemComponent } from '../cart-item/cart-item';
 import { CartItem } from '../../entries/cart-item';
 import { getCartItems } from '../../redux/actions';
 
 export class Cart extends React.Component<any, { cartItems: CartItem[] }> {
+  private unsubscribe: Unsubscribe;
+
   constructor(props: any) {
     super(props);
     this.setState({ cartItems: [] });
@@ -17,9 +20,13 @@ export class Cart extends React.Component<any, { cartItems: CartItem[] }> {
   componentDidMount() {
     this.setState({ cartItems: getCartItems() });
 
-    store.subscribe(() => {
+    this.unsubscribe = getStoreSubscription(() => {
       this.setState({ cartItems: getCartItems() });
     });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   componentWillReceiveProps(newProps) {

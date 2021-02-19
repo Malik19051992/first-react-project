@@ -1,24 +1,31 @@
 import * as _ from 'lodash';
 import React from 'react';
 import { withRouter } from 'react-router';
+import { Unsubscribe } from 'redux';
 
 import './products-tree.scss';
 import { TreeBranch } from './tree-branch/tree-branch';
 import { Category } from '../../entries/category';
-import store from '../../redux/store';
+import { getStoreSubscription } from '../../redux/store';
 import { getCategories } from '../../redux/actions/category-actions';
 import { CategoryUtils } from '../../utils/category.utils';
 
 
 class ProductTreeComponent extends React.Component<{location: any}, { categories: Category[] }> {
+  private unsubscribe: Unsubscribe;
+
   constructor(props: any) {
     super(props);
   }
 
   componentDidMount() {
-    store.subscribe(() => {
+    this.unsubscribe = getStoreSubscription(() => {
       this.setState({ categories: CategoryUtils.groupCategoryData(getCategories()) });
     });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   render() {

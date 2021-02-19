@@ -1,8 +1,9 @@
 import * as _ from 'lodash';
 import React from 'react';
+import { Unsubscribe } from 'redux';
 
-import store from '../../redux/store';
 import './products-container.scss';
+import { getStoreSubscription } from '../../redux/store';
 import { Product } from '../../entries/product';
 import { Category } from '../../entries/category';
 import { getProducts, getCategories } from '../../redux/actions';
@@ -12,6 +13,8 @@ import { ProductOptions, SortOption } from './product-options/product-options';
 import { ViewMode, ViewModeUtils } from '../../utils/view-mode.utils';
 
 export class ProductsContainer extends React.Component<{ match: any, location: any }, { products: Product[], viewMode: ViewMode, sortOption: SortOption }> {
+  private unsubscribe: Unsubscribe;
+
   constructor(props: any) {
     super(props);
   }
@@ -20,9 +23,13 @@ export class ProductsContainer extends React.Component<{ match: any, location: a
     this.setCategoryProducts();
     this.setState({ viewMode: ViewModeUtils.getViewMode() });
 
-    store.subscribe(() => {
+    this.unsubscribe = getStoreSubscription(() => {
       this.setCategoryProducts();
     });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   componentWillReceiveProps(newProps) {
@@ -37,8 +44,8 @@ export class ProductsContainer extends React.Component<{ match: any, location: a
       <div className='product-container-wrapper'>
         <ProductOptions viewModeChanged={this.viewModeChanged.bind(this)}
                         sortOptionChanged={this.sortOptionChanged.bind(this)}></ProductOptions>
-        <div className={this.state ?.viewMode === ViewMode.GRID ? 'product-container-grid' : 'product-container-list'}>
-          {_.map(this.state ?.products, (product: Product) => {
+        <div className={this.state?.viewMode === ViewMode.GRID ? 'product-container-grid' : 'product-container-list'}>
+          {_.map(this.state?.products, (product: Product) => {
             if(this.state?.viewMode === ViewMode.GRID){
             return (<ProductGridItem product={product} key={product.id}></ProductGridItem>);
           } else {

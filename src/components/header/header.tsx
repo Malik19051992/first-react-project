@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import { Unsubscribe } from 'redux';
 
 import './header.scss';
-import store from '../../redux/store';
+import { getStoreSubscription } from '../../redux/store';
 import logoIcon from '../../assets/images/logo.png';
 import searchIcon from '../../assets/images/search.svg';
 import userIcon from '../../assets/images/user.png';
@@ -11,6 +12,7 @@ import { getCartItems } from '../../redux/actions';
 
 class HeaderComponent extends React.Component<{ history: any }, { searchInputValue: string, cartItemsCount: number }> {
   private user: any;
+  private unsubscribe: Unsubscribe;
 
   constructor(props: any) {
     super(props);
@@ -24,9 +26,13 @@ class HeaderComponent extends React.Component<{ history: any }, { searchInputVal
       cartItemsCount: (getCartItems() || []).length
     });
 
-    store.subscribe(() => {
+    this.unsubscribe = getStoreSubscription(() => {
       this.setState({ cartItemsCount: (getCartItems() || []).length });
-    })
+    });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   componentWillReceiveProps(newProps) {

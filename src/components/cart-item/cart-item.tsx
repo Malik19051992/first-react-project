@@ -25,7 +25,9 @@ export class CartItem extends React.Component<{ cartItem: CartItemEntry }, any> 
                  checked={this.props.cartItem.selected}/>
         </div>
         <div className="cart-item-src">
-          <img src={this.props.cartItem.product.src}/>
+          <Link to={"/products/" + this.props.cartItem.product.id}>
+            <img src={this.props.cartItem.product.src}/>
+          </Link>
         </div>
         <div className="cart-item-data">
           <div className="cart-item-data-title">
@@ -34,7 +36,7 @@ export class CartItem extends React.Component<{ cartItem: CartItemEntry }, any> 
           {/*other data*/}
         </div>
         <div className="cart-item-count">
-          {this.props.cartItem.count}
+          <input type="number" onChange={this.countChangeHandler.bind(this)} min="1" max="10" value={this.props.cartItem.count}/>
         </div>
         <div className="cart-item-price">
           {this.props.cartItem.product.price} руб.
@@ -55,5 +57,11 @@ export class CartItem extends React.Component<{ cartItem: CartItemEntry }, any> 
 
   private cartItemDeleteHandler() {
     deleteCartItem(this.props.cartItem.id);
+  }
+
+  private countChangeHandler(event){
+    this.props.cartItem.count = event.target.value;
+
+    updateCartItem(this.props.cartItem);
   }
 }

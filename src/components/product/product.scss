@@ -26,8 +26,29 @@
       margin: 0;
     }
 
-    .product-data-description{
-      margin-top: 10px;
+    .product-data-add-to-cart {
+      margin: 10px 0;
+
+      .product-data-in-cart {
+        border: solid 1px #0077e8;
+        padding: 5px 10px;
+        border-radius: 5px ;
+        color: #0077e8;
+        width: fit-content;
+        font-size: 20px;
+      }
+
+      button{
+        background-color: #0077e8;
+        color: white;
+        border: none;
+        padding: 7px 10px;
+        font-size: 20px;
+        border-radius: 5px ;
+      }
+    }
+
+    .product-data-description {
     }
   }
 }
