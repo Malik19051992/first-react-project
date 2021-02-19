@@ -2,4 +2,20 @@
   .cart-item-wrapper:first-child {
     border-top: solid 1px #999;
   }
+
+  .cart-checkout-wrapper div {
+    div {
+      margin: 5px 0;
+      font-size: 20px;
+    }
+
+    button {
+      background-color: #0077e8;
+      color: white;
+      border: none;
+      padding: 7px 10px;
+      font-size: 20px;
+      border-radius: 5px;
+    }
+  }
 }

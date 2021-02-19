@@ -7,7 +7,8 @@ export enum CartActionType {
   SET_CART_ITEMS = 'SET_CART_ITEMS',
   ADD_CART_ITEM = 'ADD_CART_ITEM',
   UPDATE_CART_ITEM = 'UPDATE_CART_ITEM',
-  DELETE_CART_ITEM = 'DELETE_CART_ITEM'
+  DELETE_CART_ITEM = 'DELETE_CART_ITEM',
+  DELETE_CART_ITEMS = 'DELETE_CART_ITEMS'
 }
 
 export const setCartItems = (cartItems: CartItem[]) => {
@@ -66,6 +67,16 @@ export const deleteCartItem = (cartItemId: number) => {
   store.dispatch({
     type: CartActionType.DELETE_CART_ITEM,
     payload: { cartItemId }
+  });
+}
+
+export const deleteCartItems = (cartItemIds: number[]) => {
+  const currentCartItems: CartItem[] = _.filter(LocalStorageUtils.get(LocalStorageItem.CART) || [], (cartItem: CartItem) => !_.includes(cartItemIds, cartItem.id));
+  LocalStorageUtils.set(LocalStorageItem.CART, currentCartItems);
+
+  store.dispatch({
+    type: CartActionType.DELETE_CART_ITEMS,
+    payload: { cartItemIds }
   });
 }
 
